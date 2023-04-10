@@ -1,134 +1,71 @@
 <template>
   <div class="page-wrapper">
-    <div class="header">
-      <div class="main">
-        <h1>
-        Дорогие Мама & Папа!<br>
-        В нашей жизни есть счастливые и радостные моменты, которые хочется разделить с дорогими людьми. Ваша поддержка, понимание, любовь и дружба всегда были важны для нас. Поэтому мы приглашаем вас открыть вместе с нами новую страницу книги нашей жизни! Мы будем искренне рады разделить этот день вместе с вами.
-        <span class="material-symbols-outlined">favorite</span>
-        </h1>
-      </div>
-      <div class="menu"> 
-        <ul>
-          <li><a href="#dresscode">Дресс-код</a></li>
-          <li><a href="#triumph">Церемония и торжество</a></li>
-          <li><a href="#coordinator">Свадебный координатор</a></li>
-          <li><a href="#photo">Фотографии с торжества</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="information">
-    <div class="content" id="confirmation">
-      <div>
-        <span class="material-symbols-outlined notesicon">clinical_notes</span>
-      </div>
-      <div class="meetingconfirmation">
-        <div style="margin:0;">
-          <b style="font-size: 26px;">Подтвердите присутсвие</b><br>
-          <input type="" name="" placeholder="Ваше имя и фамилия" style="color: #feb6b7;">
+    <HeaderBlock />
+    <div class="content">
+      <ConfirmationBlock />
+      <div id="dresscode">
+        <div>
+          <span class="material-symbols-outlined" style="font-size: 120px;">styler</span>
         </div>
-        <div style="margin:0;">
-          <form style="width:100%;">
-            <div style="float:left; width:33%; margin:0;">
-              <input type="radio" name="field" id="k1">
-              <label for="k1"></label>Присутсвие подверждаю<br>
-              <input type="radio" name="field" id="k2">
-              <label for="k2"></label>К сожалению, не смогу быть
-            </div>
-            <div style="float:right; width:33%;margin:0;">
-              <input type="radio" name="field3" id="k3">
-              <label for="k3"></label>Буду на машине
-            </div>
-            <div style="float:right; width:33%;margin:0;">
-              <input type="radio" name="field2" id="k4">
-              <label for="k4"></label>Буду один/одна<br>
-              <input type="radio" name="field2" id="k5">
-              <label for="k5"></label>Буду с парой<br>
-            </div>
+        <div style="font-size: 24px;">
+          Мы очень ждем и с удовольствием готовимся к нашему незабываемому дню! Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами в палитре торжества.<br>
+          (Соблюдение дресс-кода обязательно)<br>
+          Захватите с собой удобную обувь для танцев!<br>
+          <span class="material-symbols-outlined">favorite</span>
+        </div>
+      </div>
+      <div class="place" id="triumph">
+        <div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2361.960958236422!2d87.01881379999999!3d53.70114159999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42d0be2a6a3a5dc1%3A0x429cdaa438c4c6b!2z0JvQuNGB0YLQstGP0L3RgdC60L7QtSDRiC4sIDE3LCDQndC-0LLQvtC60YPQt9C90LXRhtC6LCDQmtC10LzQtdGA0L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgNjU0MDI4!5e0!3m2!1sru!2sge!4v1681045730025!5m2!1sru!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div style="margin:20px;">
+          <p>
+            Сбор гостей в 14:50 по адресу Листвянское ш., 17, Новокузнецк, Кемеровская обл. (Шатер)<br>
+            Если вам нужен трансфер до места торжества и обратно, сообщите нам об этом.
+          </p>
+          <form>
+            <input type="radio" name="field4" id="mc1">
+            <label for="mc1"></label>Трансфер только туда<br>
+            <input type="radio" name="field4" id="mc2">
+            <label for="mc2"></label>Трансфер туда и обратно<br>
+            <input type="radio" name="field4" id="mc3">
+            <label for="mc3"></label>Трансфер только обратно<br>
+            <input type="radio" name="field4" id="mc4">
+            <label for="mc4"></label>Трансфер не нужен<br>
+            <button id="saveForm2" type="submit">Отправить ответ</button>
           </form>
         </div>
-        <div style="width:100%; margin: 10px 0 20px;">
-            <button id="saveForm" type="submit">Отправить</button>
-        </div>
-        <div style="margin:0;">
-          <p style="text-decoration:underline;">Второй день торжества будет проходить за городом 17.06.2023 сбор в 14:00 (место будет озвучено в день свадьбы)</p>
-        </div>
       </div>
-    </div>
-    <div class="content" id="dresscode">
-      <div>
-        <span class="material-symbols-outlined" style="font-size: 120px;">styler</span>
-      </div>
-      <div style="font-size: 24px;">
-        Мы очень ждем и с удовольствием готовимся к нашему незабываемому дню! Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами в палитре торжества.<br>
-        (Соблюдение дресс-кода обязательно)<br>
-        Захватите с собой удобную обувь для танцев!<br>
-        <span class="material-symbols-outlined">favorite</span>
-      </div>
-    </div>
-    <div class="place" id="triumph">
-      <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2361.960958236422!2d87.01881379999999!3d53.70114159999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42d0be2a6a3a5dc1%3A0x429cdaa438c4c6b!2z0JvQuNGB0YLQstGP0L3RgdC60L7QtSDRiC4sIDE3LCDQndC-0LLQvtC60YPQt9C90LXRhtC6LCDQmtC10LzQtdGA0L7QstGB0LrQsNGPINC-0LHQuy4sINCg0L7RgdGB0LjRjywgNjU0MDI4!5e0!3m2!1sru!2sge!4v1681045730025!5m2!1sru!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div style="margin:20px;">
+      <div id="coordinator">
         <p>
-          Сбор гостей в 14:50 по адресу Листвянское ш., 17, Новокузнецк, Кемеровская обл. (Шатер)<br>
-          Если вам нужен трансфер до места торжества и обратно, сообщите нам об этом.
+          Свадебный координатор – Екатерина<br>
+          Тел.: <a href="tel:89234739377" class="phone">+7(923)-473-93-77</a><br>
+          Екатерина с радостью ответит на все вопросы, связанные с торжеством. Если вы подготовили для нас сюрприз или творческий подарок, не забудьте предупредить её. Екатерина поможет воплотить вашу идею или отговорит вас <span class="material-symbols-outlined">sentiment_satisfied</span><br>
+          Так же приветствуются записанные заранее на камеру поздравления. Отправить Екатерине максимум за неделю до даты торжества.
         </p>
-        <form>
-          <input type="radio" name="field4" id="mc1">
-          <label for="mc1"></label>Трансфер только туда<br>
-          <input type="radio" name="field4" id="mc2">
-          <label for="mc2"></label>Трансфер туда и обратно<br>
-          <input type="radio" name="field4" id="mc3">
-          <label for="mc3"></label>Трансфер только обратно<br>
-          <input type="radio" name="field4" id="mc4">
-          <label for="mc4"></label>Трансфер не нужен<br>
-          <button id="saveForm2" type="submit">Отправить ответ</button>
-        </form>
+      </div>
+      <div id="photo">
+        <p>Скоро здесь появятся фотографии с торжества</p>
+        <div class="loader"></div>
       </div>
     </div>
-    <div class="content" id="coordinator">
-      <p>
-      Свадебный координатор – Екатерина<br>
-      Тел.: <a href="tel:89234739377" class="phone">8(923)4739377</a><br>
-      Екатерина с радостью ответит на все вопросы, связанные с торжеством. Если вы подготовили для нас сюрприз или творческий подарок, не забудьте предупредить её. Екатерина поможет воплотить вашу идею или отговорит вас <span class="material-symbols-outlined">sentiment_satisfied</span><br>
-      Так же приветствуются записанные заранее на камеру поздравления. Отправить Екатерине максимум за неделю до даты торжества.
-    </p>
-    </div>
-    <div class="content" id="photo">
-      <p>Скоро здесь появятся фотографии с торжества</p>
-        <div class="loader"></div>
-    </div>
-    </div>
-    <button onclick="topFunction()" id="up" title="Go to top"><span class="material-symbols-outlined" style="font-size: 50px;">expand_less</span></button>
+    <button @click="topFunction" id="up" title="Go to top"><span class="material-symbols-outlined" style="font-size: 50px;">expand_less</span></button>
   </div>
 </template>
 
+<script setup lang="ts">
+import HeaderBlock from '@/components/HeaderBlock.vue';
+import ConfirmationBlock from '@/components/ConfirmationBlock.vue';
+
+const topFunction = () => {
+  window.scrollTo({
+    top: 0,
+  })
+}
+</script>
+
 <style lang="scss" scoped>
-    ul {
-      padding: 10px 0 0;
-      width: 100%;
-    }
-    li {
-      display: inline;
-      font-size: 24px;
-      padding: 10px 4%;
-      font-family: 'Marck Script', cursive;
-      border-bottom: 1px solid #feb6b7;
-    }
-    a {
-      text-decoration: none;
-      color: #855f5f;
-    }
-    a:hover {
-      color: #feb6b7;
-    }
-    .menu {
-      width: 70%;
-      margin: auto;
-    }
-    .header,
+  
     .information,
     .meetingconfirmation {
       display: flex;
@@ -151,30 +88,14 @@
     #dresscode div, 
     #confirmation div {
       margin: 20px;
-      text-align: left;
     }
     #dresscode, 
     #confirmation {
       display: flex;
       flex-direction: row;
     }
-    .main {
-      background-image: url("main.jpg");
-      height: 500px;
-      background-repeat: no-repeat, repeat;
-      background-size: cover;
-      vertical-align: middle;
-      opacity: 0.8;
-      font-family: 'Marck Script', cursive;
-    }
-    h1 {
-      padding-top: 10%;
-      opacity: 1;
-      width: 70%;
-      padding-left: 15%;
-      color: #ffe7e3;
-      text-align: center;
-    }
+
+
     p {
       color: #855f5f;
       font-family: 'Marck Script', cursive;
@@ -182,7 +103,6 @@
     .content {
       width: 70%;
       margin: 50px auto;
-      text-align: center;
       font-family: 'Marck Script', cursive;
       color: #855f5f;
     }

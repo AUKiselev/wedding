@@ -27,6 +27,9 @@
     dd {
       margin: 0!important;
     }
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
   <body>
     <div id="app"></div>
@@ -39,11 +42,6 @@
           } else {
               document.getElementById("up").style.display = "none";
           }
-      }
-
-      function topFunction() {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
       }
     </script>
     <script type="module" src="/src/main.ts"></script>
