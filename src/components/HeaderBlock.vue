@@ -28,13 +28,12 @@
   flex-direction: column;
 
   .first-block {
-    background-image: url("main.jpg");
+    background-image: url("@/assets/img/main.jpg");
     height: 500px;
-    background-repeat: no-repeat, repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     vertical-align: middle;
     opacity: 0.8;
-    font-family: 'Marck Script', cursive;
   }
   
   .main-title {
@@ -62,7 +61,6 @@
   .menu-item {
     font-size: 24px;
     padding: 10px 0;
-    font-family: 'Marck Script', cursive;
     border-bottom: 1px solid #feb6b7;
     color: #855f5f;
     transition: color .3s, border .3s;

@@ -10,40 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на свадьбу</title>
   </head>
-  <style type="text/css">
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    ul[class],
-    ol[class],
-    li,
-    figure,
-    figcaption,
-    blockquote,
-    dl,
-    dd {
-      margin: 0!important;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
   <body>
     <div id="app"></div>
-    <script>
-      window.onscroll = function() {scrollFunction()};
-
-      function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              document.getElementById("up").style.display = "block";
-          } else {
-              document.getElementById("up").style.display = "none";
-          }
-      }
-    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

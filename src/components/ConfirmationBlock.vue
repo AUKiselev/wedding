@@ -3,32 +3,62 @@
     <div>
       <span class="material-symbols-outlined notesicon">clinical_notes</span>
     </div>
-    <div class="meetingconfirmation">
+    <div class="meeting-confirmation">
       <div class="m0 ">
         <span class="bold-text">Подтвердите присутсвие</span>
       </div>
       <div class="m0">
-        <form class="confirmation-form">
+        <form v-bind="confirmationForm" class="confirmation-form">
           <div class="input-group">
-            <input type="radio" name="field" class="confirmation-form__input">
-            <label for="k1"></label>Присутсвие подверждаю<br>
-            <input type="radio" name="field" class="confirmation-form__input">
-            <label for="k2"></label>К сожалению, не смогу быть
+            <input
+              id="presence-yes"
+              type="radio"
+              v-model="confirmationForm.presence"
+              :value="true"
+              class="confirmation-form__input form-input"
+            >
+            <label for="presence-yes" class="confirmation-form__label form-label">Присутсвие подверждаю</label>
+            <input
+              id="presence-no"
+              type="radio"
+              v-model="confirmationForm.presence"
+              :value="false"
+              class="confirmation-form__input form-input"
+            >
+            <label for="presence-no" class="confirmation-form__label form-label">К сожалению, не смогу быть</label>
           </div>
           <div class="input-group">
-            <input type="radio" name="field2" class="confirmation-form__input">
-            <label for="k4"></label>Буду один/одна<br>
-            <input type="radio" name="field2" class="confirmation-form__input">
-            <label for="k5"></label>Буду с парой
+            <input
+              id="is-alone-yes"
+              type="radio"
+              v-model="confirmationForm.isAlone"
+              :value="true"
+              class="confirmation-form__input form-input"
+            >
+            <label for="is-alone-yes" class="confirmation-form__label form-label">Буду один/одна</label>
+            <input
+              id="is-alone-no"
+              type="radio"
+              v-model="confirmationForm.isAlone"
+              :value="false"
+              class="confirmation-form__input form-input"
+            >
+            <label for="is-alone-no" class="confirmation-form__label form-label">Буду с парой</label>
           </div>
           <div class="input-group">
-            <input type="radio" name="field3" class="confirmation-form__input">
-            <label for="k3"></label>Буду на машине
+            <input
+              id="on-car-yes"
+              type="checkbox"
+              name="on-car"
+              v-model="confirmationForm.onCar"
+              class="confirmation-form__input form-input"
+            >
+            <label for="on-car-yes" class="confirmation-form__label form-label">Буду на машине</label>
           </div>
         </form>
       </div>
       <div class="submit-wrapper">
-        <button type="submit" class="save-form">Отправить</button>
+        <button type="submit" class="send-form" :disabled="submitDisabled">Отправить</button>
       </div>
       <div class="m0">
         <p class="fz-24">Второй день торжества будет проходить за городом 17.06.2023 сбор в 14:00 (место будет озвучено в день свадьбы)</p>
@@ -36,6 +66,20 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed, reactive } from 'vue';
+
+const confirmationForm = reactive({
+  presence: null,
+  isAlone: null,
+  onCar: false
+})
+
+const submitDisabled = computed(() => {
+  return confirmationForm.presence === null
+})
+</script>
 
 <style scoped lang="scss">
 .bold-text {
@@ -56,14 +100,13 @@
   font-size: 120px; 
   margin-top: 80%;
 }
-.meetingconfirmation {
+.meeting-confirmation {
   display: flex;
   flex-direction: column;
   margin: 40px;
 }
 .confirmation-form {
   margin-top: 10px;
-  font-family: 'Marck Script', cursive;
   color: #855f5f;
   font-size: 20px;
   width:100%;
@@ -71,39 +114,6 @@
 }
 .input-group + .input-group {
   margin-left: 20px;
-}  
-.confirmation-form__input {
-  display: none;
-}
-.confirmation-form__input + label {
-  display: inline-block;
-  vertical-align: top;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #855f5f;
-  margin: 5px 10px 5px 0;
-  border-radius: 10px;
-}
-.confirmation-form__input:checked + label {
-  background: #855f5f;
-}
-.save-form{
-  pointer-events: none;
-  font-family: 'Marck Script', cursive;
-  font-size: 20px;
-  border: 1px solid #feb6b7;
-  background-color: white;
-  margin-top: 20px;
-  color: #855f5f;
-  padding: 5px 10px;
-}
-.save-form:hover {
-  color: #feb6b7;
-  font-size: 22px;
-}
-.confirmation-form__input:checked + label ~ .save-form {
-  pointer-events: auto;
-  color: #855f5fv;
 }
 .submit-wrapper {
   width:100%; 
