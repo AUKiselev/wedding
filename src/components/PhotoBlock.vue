@@ -11,6 +11,11 @@
   font-size: 24px;
   text-align: center;
   margin: 40px auto;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    font-size: 18px;
+  }
 }
 .loader {
   border: 10px solid #f3f3f3;

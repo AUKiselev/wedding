@@ -46,6 +46,17 @@ onMounted(() => {
   width: 70%;
   margin: 50px auto;  
   color: #855f5f;
+  @media (max-width: 1150px) {
+    width: 80%;
+  }
+
+  @media (max-width: 415px) {
+    width: 90%;
+  }
+
+  @media (max-width: 950px) {
+    margin: 30px auto;
+  }
 }
 .up-button {
   position: fixed;
@@ -67,6 +78,10 @@ onMounted(() => {
   &:hover {
     background-color: #ffe7e3;
     color: #855f5f;
+  }
+
+  @media (max-width: 900px) {
+    right: 50px;
   }
 }
 .up-button-icon {
