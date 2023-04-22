@@ -16,15 +16,15 @@
         Если вам нужен трансфер до места торжества и обратно, сообщите нам об этом.
       </p>
       <form class="place-form" v-bind="transferForm">
-        <input id="transfer-there-back" type="radio" name="transfer" v-model="transferForm.transfer" value="there-back" class="form-input">
+        <input id="transfer-there-back" type="radio" v-model="transferForm.transfer" value="to-from" class="form-input">
         <label for="transfer-there-back" class="form-label">Трансфер туда и обратно</label>
-        <input id="transfer-there" type="radio" name="transfer" v-model="transferForm.transfer" value="there" class="form-input">
+        <input id="transfer-there" type="radio" v-model="transferForm.transfer" value="to" class="form-input">
         <label for="transfer-there" class="form-label">Трансфер только туда</label>
-        <input id="transfer-back" type="radio" name="transfer" v-model="transferForm.transfer" value="back" class="form-input">
+        <input id="transfer-back" type="radio" v-model="transferForm.transfer" value="from" class="form-input">
         <label for="transfer-back" class="form-label">Трансфер только обратно</label>
-        <input id="transfer-no" type="radio" name="transfer" v-model="transferForm.transfer" value="no" class="form-input">
+        <input id="transfer-no" type="radio" v-model="transferForm.transfer" value="no" class="form-input">
         <label for="transfer-no" class="form-label">Трансфер не нужен</label>
-        <button type="submit" class="send-form" :disabled="submitDisabled">Отправить ответ</button>
+        <button type="submit" class="send-form" :disabled="submitDisabled" @click.prevent="submitForm">Отправить ответ</button>
       </form>
     </div>
   </div>
@@ -32,14 +32,32 @@
 
 <script setup lang="ts">
 import { computed, reactive } from 'vue';
+import { useRoute } from "vue-router";
+import api from '@/api'
 
 const transferForm = reactive({
-  transfer: 'there-back'
+  transfer: null as null | string,
 })
 
 const submitDisabled = computed(() => {
   return transferForm.transfer === null
 })
+
+const route = useRoute();
+const user = route.params.user as string;
+
+const submitForm = async () => {
+  const transferTo = transferForm.transfer?.includes('to');
+  const transferFrom = transferForm.transfer?.includes('from');
+
+  const response = await api.post('/claims/', {
+    'slug': user,
+    'transfer_to': transferTo,
+    'transfer_from': transferFrom,
+  });
+
+  console.log(response)
+}
 </script>
 
 <style scoped lang="scss">

@@ -54,7 +54,7 @@
         </div>
       </form>
       <div class="submit-wrapper">
-        <button type="submit" class="send-form" :disabled="submitDisabled">Отправить</button>
+        <button type="submit" class="send-form" :disabled="submitDisabled" @click.prevent="submitForm">Отправить</button>
       </div>
       <p class="fz-24">Второй день торжества будет проходить за городом 17.06.2023 сбор в 14:00 (место будет озвучено в день свадьбы)</p>
     </div>
@@ -63,6 +63,8 @@
 
 <script setup lang="ts">
 import { computed, reactive } from 'vue';
+import { useRoute } from "vue-router";
+import api from '@/api'
 
 const confirmationForm = reactive({
   presence: null,
@@ -73,6 +75,20 @@ const confirmationForm = reactive({
 const submitDisabled = computed(() => {
   return confirmationForm.presence === null
 })
+
+const route = useRoute();
+const user = route.params.user as string;
+
+const submitForm = async () => {
+  const response = await api.post('/claims/', {
+    'slug': user,
+    'will_come': confirmationForm.presence,
+    'solo': confirmationForm.isAlone,
+    'have-car': confirmationForm.onCar
+  });
+
+  console.log(response)
+}
 </script>
 
 <style scoped lang="scss">

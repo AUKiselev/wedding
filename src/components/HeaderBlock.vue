@@ -2,9 +2,10 @@
   <header class="header">
     <div class="first-block">
       <h1 class="main-title">
-      Дорогие Мама & Папа!<br>
-      В нашей жизни есть счастливые и радостные моменты, которые хочется разделить с дорогими людьми. Ваша поддержка, понимание, любовь и дружба всегда были важны для нас. Поэтому мы приглашаем вас открыть вместе с нами новую страницу книги нашей жизни! Мы будем искренне рады разделить этот день вместе с вами.
-      <span class="material-symbols-outlined">favorite</span>
+        {{ guestName }}!<br>
+        В нашей жизни есть счастливые и радостные моменты, которые хочется разделить с дорогими людьми. Ваша поддержка, понимание, любовь и дружба всегда были важны для нас. Поэтому мы приглашаем вас открыть вместе с нами новую страницу книги нашей жизни! Мы будем искренне рады разделить этот день вместе с вами.
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="wedding-date">16.06.2023 г. в 15:00</span>
       </h1>
     </div>
     <div class="menu"> 
@@ -19,7 +20,18 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import { useRoute } from "vue-router";
+import guestList from '@/mock/guestList.json';
 
+const guestName = ref<string | null>(null)
+const route = useRoute();
+
+onMounted(() => {
+  const user = route.params.user as string;
+  // @ts-ignore
+  guestName.value = guestList[user];
+})
 </script>
 
 <style lang="scss">
@@ -36,11 +48,15 @@
     opacity: 0.8;
 
     @media (max-width: 1000px) {
-      height: 350px;
+      height: 400px;
     }
 
     @media (max-width: 768px) {
-      height: 300px;
+      height: 350px;
+    }
+
+    @media (max-width: 650px) {
+      height: 325px;
     }
   }
   
@@ -77,6 +93,11 @@
     @media (max-width: 360px) {
       font-size: 17px;
     }
+  }
+
+  .wedding-date {
+    display: block;
+    color: white;
   }
 
   .menu {
