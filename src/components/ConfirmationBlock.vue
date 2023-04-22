@@ -5,12 +5,12 @@
     </div>
     <div class="meeting-confirmation">
       <span class="bold-text">Подтвердите присутсвие</span>
-      <form v-bind="confirmationForm" class="confirmation-form">
+      <form v-bind="userForm" class="confirmation-form">
         <div class="input-group">
           <input
             id="presence-yes"
             type="radio"
-            v-model="confirmationForm.presence"
+            v-model="userForm.will_come"
             :value="true"
             class="confirmation-form__input form-input"
           >
@@ -18,7 +18,7 @@
           <input
             id="presence-no"
             type="radio"
-            v-model="confirmationForm.presence"
+            v-model="userForm.will_come"
             :value="false"
             class="confirmation-form__input form-input"
           >
@@ -28,7 +28,7 @@
           <input
             id="is-alone-yes"
             type="radio"
-            v-model="confirmationForm.isAlone"
+            v-model="userForm.solo"
             :value="true"
             class="confirmation-form__input form-input"
           >
@@ -36,7 +36,7 @@
           <input
             id="is-alone-no"
             type="radio"
-            v-model="confirmationForm.isAlone"
+            v-model="userForm.solo"
             :value="false"
             class="confirmation-form__input form-input"
           >
@@ -47,48 +47,33 @@
             id="on-car-yes"
             type="checkbox"
             name="on-car"
-            v-model="confirmationForm.onCar"
+            v-model="userForm['have-car']"
             class="confirmation-form__input form-input"
           >
           <label for="on-car-yes" class="confirmation-form__label form-label">Буду на машине</label>
         </div>
       </form>
-      <div class="submit-wrapper">
-        <button type="submit" class="send-form" :disabled="submitDisabled" @click.prevent="submitForm">Отправить</button>
-      </div>
+      <p class="fz-24 descripdion">Пожалуйста, заполните поля. В блоке с картой будет кнопка отправки формы.</p>
       <p class="fz-24">Второй день торжества будет проходить за городом 17.06.2023 сбор в 14:00 (место будет озвучено в день свадьбы)</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute } from "vue-router";
-import api from '@/api'
-
-const confirmationForm = reactive({
-  presence: null,
-  isAlone: null,
-  onCar: false
-})
-
-const submitDisabled = computed(() => {
-  return confirmationForm.presence === null
-})
+import { storeToRefs } from 'pinia';
+import { useStore } from '@/store/index'
 
 const route = useRoute();
 const user = route.params.user as string;
 
-const submitForm = async () => {
-  const response = await api.post('/claims/', {
-    'slug': user,
-    'will_come': confirmationForm.presence,
-    'solo': confirmationForm.isAlone,
-    'have-car': confirmationForm.onCar
-  });
+const store = useStore();
+const { userForm } = storeToRefs(store);
 
-  console.log(response)
-}
+onMounted(() => {
+  userForm.value.slug = user;
+})
 </script>
 
 <style scoped lang="scss">
@@ -146,5 +131,9 @@ const submitForm = async () => {
 .submit-wrapper {
   width:100%; 
   margin: 10px 0 20px;
+}
+
+.descripdion {
+  margin: 20px 0
 }
 </style>

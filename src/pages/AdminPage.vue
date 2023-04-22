@@ -37,52 +37,9 @@ const inputCheck = () => {
   }
 }
 
-const guests = ref([
-  {
-    "slug": "parents_2",
-    "will_come": true,
-    "solo": false,
-    "have_car": true,
-    "transfer_to": false,
-    "transfer_from": false
-  },
-  {
-    "slug": "parents_1",
-    "will_come": true,
-    "solo": true,
-    "have_car": false,
-    "transfer_to": false,
-    "transfer_from": true
-  },
-  {
-    "slug": "vladislav_oksana",
-    "will_come": true,
-    "solo": true,
-    "have_car": false,
-    "transfer_to": false,
-    "transfer_from": true
-  },
-  {
-    "slug": "dmitry",
-    "will_come": false,
-    "solo": true,
-    "have_car": false,
-    "transfer_to": false,
-    "transfer_from": true
-  },
-  {
-    "slug": "alexander_m",
-    "will_come": true,
-    "solo": true,
-    "have_car": true,
-    "transfer_to": true,
-    "transfer_from": true
-  }
-])
+const guests = ref([])
 
 const getName = (guest) => {
-  if (guest.slug === 'parents_1') return 'Родители Милы';
-  if (guest.slug === 'parents_2') return 'Родители Данила';
   if (guest.slug === 'alexander_m') return guestList[guest.slug].slice(7) + ' Москаленко';
 
   const name = guestList[guest.slug].slice(7);
@@ -118,9 +75,9 @@ const transfer = (guest) => {
 }
 
 onMounted(async () => {
-  // const response = await api.get('/claims/');
+  const response = await api.get('/claims/');
 
-  // guests.value = response;
+  guests.value = response;
 })
 </script>
 

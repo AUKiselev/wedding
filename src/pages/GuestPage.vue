@@ -11,10 +11,15 @@
     <button @click="topFunction" id="up" title="Go to top" :class="['up-button', {_hidden: upIsHidden}]">
       <span class="material-symbols-outlined up-button-icon">expand_less</span>
     </button>
+    <div :class="['modal', {_open: isShowModal}]">
+      <p class="modal-text">Форма успешно отправлена!</p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useStore } from '@/store/index'
 import HeaderBlock from '@/components/HeaderBlock.vue';
 import ConfirmationBlock from '@/components/ConfirmationBlock.vue';
 import DresscodeBlock from '@/components/DresscodeBlock.vue';
@@ -22,6 +27,9 @@ import PlaceBlock from '@/components/PlaceBlock.vue';
 import CoordinatorBlock from '@/components/CoordinatorBlock.vue';
 import PhotoBlock from '@/components/PhotoBlock.vue';
 import { computed, onMounted, ref } from 'vue';
+
+const store = useStore();
+const { isShowModal } = storeToRefs(store);
 
 const topFunction = () => {
   window.scrollTo({
@@ -86,5 +94,20 @@ onMounted(() => {
 }
 .up-button-icon {
   font-size: 50px;
+}
+.modal {
+  position: fixed;
+  top: -100px;
+  right: 20px;
+  width: 150px;
+  height: 40px;
+  padding: 10px 20px;
+  border: 2px solid #855f5f;
+  font-size: 18px;
+  transition: top .4s;
+
+  &._open {
+    top: 20px;
+  }
 }
 </style>

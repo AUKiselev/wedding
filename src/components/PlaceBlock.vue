@@ -31,33 +31,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
-import { useRoute } from "vue-router";
-import api from '@/api'
+import { computed, reactive, watch } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useStore } from '@/store/index'
 
 const transferForm = reactive({
   transfer: null as null | string,
-})
+});
+
+const store = useStore();
+const { userForm } = storeToRefs(store);
+const { sendForm } = store;
+
+watch(transferForm, () => {
+  userForm.value['transfer-to'] = transferForm.transfer?.includes('to');
+  userForm.value['transfer-from'] = transferForm.transfer?.includes('from');
+}, {deep: true});
 
 const submitDisabled = computed(() => {
-  return transferForm.transfer === null
-})
-
-const route = useRoute();
-const user = route.params.user as string;
+  return transferForm.transfer === null || userForm.value.will_come === null
+});
 
 const submitForm = async () => {
-  const transferTo = transferForm.transfer?.includes('to');
-  const transferFrom = transferForm.transfer?.includes('from');
-
-  const response = await api.post('/claims/', {
-    'slug': user,
-    'transfer_to': transferTo,
-    'transfer_from': transferFrom,
-  });
-
-  console.log(response)
-}
+  await sendForm();
+};
 </script>
 
 <style scoped lang="scss">
