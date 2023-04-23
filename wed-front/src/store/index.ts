@@ -8,9 +8,9 @@ export const useStore = defineStore({
       slug: '',
       will_come: null,
       solo: null,
-      'have-car': false,
-      'transfer-to': undefined as undefined | boolean,
-      'transfer-from': undefined as undefined | boolean
+      have_car: false,
+      transfer_to: undefined as undefined | boolean,
+      transfer_from: undefined as undefined | boolean
     },
     isShowModal: false
   }),
