@@ -47,7 +47,7 @@
             id="on-car-yes"
             type="checkbox"
             name="on-car"
-            v-model="userForm['have-car']"
+            v-model="userForm.have_car"
             class="confirmation-form__input form-input"
           >
           <label for="on-car-yes" class="confirmation-form__label form-label">Буду на машине</label>

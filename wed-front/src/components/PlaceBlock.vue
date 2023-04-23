@@ -44,8 +44,8 @@ const { userForm } = storeToRefs(store);
 const { sendForm } = store;
 
 watch(transferForm, () => {
-  userForm.value['transfer-to'] = transferForm.transfer?.includes('to');
-  userForm.value['transfer-from'] = transferForm.transfer?.includes('from');
+  userForm.value.transfer_to = transferForm.transfer?.includes('to');
+  userForm.value.transfer_from = transferForm.transfer?.includes('from');
 }, {deep: true});
 
 const submitDisabled = computed(() => {
