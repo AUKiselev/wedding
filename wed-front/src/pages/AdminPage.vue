@@ -79,6 +79,7 @@ const transfer = (guest) => {
 
 onMounted(async () => {
   const response = await api.get('/claims/');
+  console.log(response);
 
   guests.value = response;
 })
