@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  backend:
+    build: ./wed_back
+    ports:
+      - 5000:5000
+    volumes:
+      - ./wed_back:/app
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 5000
+  frontend:
+    build: ./wed-front
+    ports:
+      - 80:80
