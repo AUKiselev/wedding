@@ -42,9 +42,9 @@ const guests = ref([])
 const getName = (guest) => {
   if (!guest || !guest.slug) return;
   if (guest.slug === 'alexander_m') return guestList[guest.slug].slice(7) + ' Москаленко';
-
+  let name;
   if (guestList[guest.slug]) {
-    const name = guestList[guest.slug].slice(7);
+    name = guestList[guest.slug].slice(7);
   }
   return name;
 }
