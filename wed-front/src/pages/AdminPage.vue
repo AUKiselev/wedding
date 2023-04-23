@@ -40,10 +40,12 @@ const inputCheck = () => {
 const guests = ref([])
 
 const getName = (guest) => {
-  if (!guest && !guest.slug) return;
+  if (!guest || !guest.slug) return;
   if (guest.slug === 'alexander_m') return guestList[guest.slug].slice(7) + ' Москаленко';
 
-  const name = guestList[guest.slug].slice(7);
+  if (guestList[guest.slug]) {
+    const name = guestList[guest.slug].slice(7);
+  }
   return name;
 }
 
